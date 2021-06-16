@@ -1,83 +1,99 @@
-# Data Science Salary Estimator: Project Overview 
-* Created a tool that estimates data science salaries (MAE ~ $ 11K) to help data scientists negotiate their income when they get a job.
-* Scraped over 1000 job descriptions from glassdoor using python and selenium
-* Engineered features from the text of each job description to quantify the value companies put on python, excel, aws, and spark. 
+# Life Expectancy Project
+* Created a tool which able to predict the life expectancy of an individual based on numerous parameters.
+* Dataset was taken from kaggle. 
+* Link for dataset: https://www.kaggle.com/mmattson/who-national-life-expectancy
 * Optimized Linear, Lasso, and Random Forest Regressors using GridsearchCV to reach the best model. 
-* Built a client facing API using flask 
+* Built an API on Flask and deployed it on a local server 
 
 ## Code and Resources Used 
 **Python Version:** 3.7  
 **Packages:** pandas, numpy, sklearn, matplotlib, seaborn, selenium, flask, json, pickle  
-**For Web Framework Requirements:**  ```pip install -r requirements.txt```  
-**Scraper Github:** https://github.com/arapfaik/scraping-glassdoor-selenium  
-**Scraper Article:** https://towardsdatascience.com/selenium-tutorial-scraping-glassdoor-com-in-10-minutes-3d0915c6d905  
-**Flask Productionization:** https://towardsdatascience.com/productionize-a-machine-learning-model-with-flask-and-heroku-8201260503d2
 
-## YouTube Project Walk-Through
-https://www.youtube.com/playlist?list=PL2zq7klxX5ASFejJj80ob9ZAnBHdz5O1t
+## Overview Of The Dataset
+The features in the dataset are as follows:
 
-## Web Scraping
-Tweaked the web scraper github repo (above) to scrape 1000 job postings from glassdoor.com. With each job, we got the following:
-*	Job title
-*	Salary Estimate
-*	Job Description
-*	Rating
-*	Company 
-*	Location
-*	Company Headquarters 
-*	Company Size
-*	Company Founded Date
-*	Type of Ownership 
-*	Industry
-*	Sector
-*	Revenue
-*	Competitors 
+* Country
+* Year
+* Developed or Developing status
+* Life Expectancy in age
+* Adult Mortality Rates of both sexes (probability of dying between 15 and 60 years per 1000 population)
+* Number of Infant Deaths per 1000 population
+* Alcohol, recorded per capita (15+) consumption (in litres of pure alcohol)
+* Expenditure on health as a percentage of Gross Domestic Product per capita(%)
+* Hepatitis B (HepB) immunization coverage among 1-year-olds (%)
+* Measles - number of reported cases per 1000 population
+* Average Body Mass Index of entire population
+* Number of under-five deaths per 1000 population
+* Polio (Pol3) immunization coverage among 1-year-olds (%)
+* General government expenditure on health as a percentage of total government expenditure (%)
+* Diphtheria tetanus toxoid and pertussis (DTP3) immunization coverage among 1-year-olds (%)
+* Deaths per 1 000 live births HIV/AIDS (0-4 years)
+* Gross Domestic Product per capita (in USD)
+* Population of the country
+* Prevalence of thinness among children and adolescents for Age 10 to 19 (% )
+* Prevalence of thinness among children for Age 5 to 9(%)
+* Human Development Index in terms of income composition of resources (index ranging from 0 to 1)
+* Number of years of Schooling(years)
+
+
 
 ## Data Cleaning
-After scraping the data, I needed to clean it up so that it was usable for our model. I made the following changes and created the following variables:
+The first task was to clean the data. For that I did the following things:
 
-*	Parsed numeric data out of salary 
-*	Made columns for employer provided salary and hourly wages 
-*	Removed rows without salary 
-*	Parsed rating out of company text 
-*	Made a new column for company state 
-*	Added a column for if the job was at the company’s headquarters 
-*	Transformed founded date into age of company 
-*	Made columns for if different skills were listed in the job description:
-    * Python  
-    * R  
-    * Excel  
-    * AWS  
-    * Spark 
-*	Column for simplified job title and Seniority 
-*	Column for description length 
+*	Striped the column names out of extra white spaces
+*	Checked which columns had either 0 or null values in them.
+*	The null values were replaced by the mean of their respective columns.
+*	Some of the columns having 0 value in them were left untouched, for eg: infant deaths, etc. And some of the columns with zero values were replaced by the mean of that column, for eg: percentage expenditure, etc.
+*	There were 193 countries in the dataset. Each country had 16 entries. 10 countries had only 1 entries. They would not be beneficial while building the model. Instead of dropping those values, those countries were replaced by "Other". So the entry "Other", now had 10 entries. 
+
 
 ## EDA
-I looked at the distributions of the data and the value counts for the various categorical variables. Below are a few highlights from the pivot tables. 
+I looked at the change in Life Expectancy of every country per year. The graph of Afghanistan and Albania are as follows:
+![image](https://user-images.githubusercontent.com/56645508/122201360-93455c00-ceb9-11eb-9b6d-b54cbebdb9ee.png)
+![image](https://user-images.githubusercontent.com/56645508/122201377-993b3d00-ceb9-11eb-8ef3-3ee69ad771a3.png)
 
-![alt text](https://github.com/PlayingNumbers/ds_salary_proj/blob/master/salary_by_job_title.PNG "Salary by Position")
-![alt text](https://github.com/PlayingNumbers/ds_salary_proj/blob/master/positions_by_state.png "Job Opportunities by State")
-![alt text](https://github.com/PlayingNumbers/ds_salary_proj/blob/master/correlation_visual.png "Correlations")
+I also looked at the change in adult mortality rate of every country per year. The graph of Australia and India are as follows:
+![image](https://user-images.githubusercontent.com/56645508/122201568-c982db80-ceb9-11eb-94aa-d03461d567cc.png)
+![image](https://user-images.githubusercontent.com/56645508/122201664-e61f1380-ceb9-11eb-98c4-484a43491bc7.png)
+
+I also looked at the change in percentage expenditure of every country per year. The graph of Angola and Argentina are as follows:
+![image](https://user-images.githubusercontent.com/56645508/122201803-0949c300-ceba-11eb-8d8d-ebf2d5e88d26.png)
+![image](https://user-images.githubusercontent.com/56645508/122201818-0e0e7700-ceba-11eb-8e15-1d6552b80ec4.png)
+
+I also looked at the change in GDP of every country per year. The graph of Bangladesh and Brazil are as follows:
+![image](https://user-images.githubusercontent.com/56645508/122202010-3dbd7f00-ceba-11eb-8818-b353b352b3ed.png)
+![image](https://user-images.githubusercontent.com/56645508/122202046-457d2380-ceba-11eb-95de-b26caad54657.png)
+
+Next I looked at the distribution of developed and developing countries in my dataset:
+![image](https://user-images.githubusercontent.com/56645508/122202157-6180c500-ceba-11eb-8dba-21bc55357f84.png)
+
+I also created a heatmap of my dataset:
+![image](https://user-images.githubusercontent.com/56645508/122202216-71000e00-ceba-11eb-96d3-fd5e6d7cd525.png)
+
 
 ## Model Building 
 
-First, I transformed the categorical variables into dummy variables. I also split the data into train and tests sets with a test size of 20%.   
-
-I tried three different models and evaluated them using Mean Absolute Error. I chose MAE because it is relatively easy to interpret and outliers aren’t particularly bad in for this type of model.   
+I keep the data for 2000-2013 as my training data and the data for 2014-2015 was used as my testing data.  
 
 I tried three different models:
-*	**Multiple Linear Regression** – Baseline for the model
-*	**Lasso Regression** – Because of the sparse data from the many categorical variables, I thought a normalized regression like lasso would be effective.
-*	**Random Forest** – Again, with the sparsity associated with the data, I thought that this would be a good fit. 
+*	**Multiple Linear Regression** 
+*	**Lasso Regression** 
+*	**Random Forest**
+I fine tuned each model using GridSearchCV 
 
 ## Model performance
-The Random Forest model far outperformed the other approaches on the test and validation sets. 
-*	**Random Forest** : MAE = 11.22
-*	**Linear Regression**: MAE = 18.86
-*	**Ridge Regression**: MAE = 19.67
+The Random Forest model outperformed the other models on the test set. 
+The accuracy achieved by the three models are as follows:
+
+*	**Random Forest** : 94.0281%
+*	**Linear Regression**: 83.3113%
+*	**Lasso Regression**: 83.3106%
 
 ## Productionization 
-In this step, I built a flask API endpoint that was hosted on a local webserver by following along with the TDS tutorial in the reference section above. The API endpoint takes in a request with a list of values from a job listing and returns an estimated salary. 
+In this step, I built a flask API  that was hosted on a local webserver. The API took all the variables as input and gave the life expectancy as output. Below are the screenshots for the same:
+![image](https://user-images.githubusercontent.com/56645508/122203632-dbfe1480-cebb-11eb-8dba-3f18dbedf1ec.png)
+![image](https://user-images.githubusercontent.com/56645508/122203693-ec15f400-cebb-11eb-9fe2-1b318fe8cd9e.png)
+![image](https://user-images.githubusercontent.com/56645508/122203776-03ed7800-cebc-11eb-82ae-6bce43a5c36e.png)
 
 
 
