@@ -49,25 +49,31 @@ The first task was to clean the data. For that I did the following things:
 
 ## EDA
 I looked at the change in Life Expectancy of every country per year. The graph of Afghanistan and Albania are as follows:
+
 ![image](https://user-images.githubusercontent.com/56645508/122201360-93455c00-ceb9-11eb-9b6d-b54cbebdb9ee.png)
 ![image](https://user-images.githubusercontent.com/56645508/122201377-993b3d00-ceb9-11eb-8ef3-3ee69ad771a3.png)
 
 I also looked at the change in adult mortality rate of every country per year. The graph of Australia and India are as follows:
+
 ![image](https://user-images.githubusercontent.com/56645508/122201568-c982db80-ceb9-11eb-94aa-d03461d567cc.png)
 ![image](https://user-images.githubusercontent.com/56645508/122201664-e61f1380-ceb9-11eb-98c4-484a43491bc7.png)
 
 I also looked at the change in percentage expenditure of every country per year. The graph of Angola and Argentina are as follows:
+
 ![image](https://user-images.githubusercontent.com/56645508/122201803-0949c300-ceba-11eb-8d8d-ebf2d5e88d26.png)
 ![image](https://user-images.githubusercontent.com/56645508/122201818-0e0e7700-ceba-11eb-8e15-1d6552b80ec4.png)
 
 I also looked at the change in GDP of every country per year. The graph of Bangladesh and Brazil are as follows:
+
 ![image](https://user-images.githubusercontent.com/56645508/122202010-3dbd7f00-ceba-11eb-8818-b353b352b3ed.png)
 ![image](https://user-images.githubusercontent.com/56645508/122202046-457d2380-ceba-11eb-95de-b26caad54657.png)
 
 Next I looked at the distribution of developed and developing countries in my dataset:
+
 ![image](https://user-images.githubusercontent.com/56645508/122202157-6180c500-ceba-11eb-8dba-21bc55357f84.png)
 
 I also created a heatmap of my dataset:
+
 ![image](https://user-images.githubusercontent.com/56645508/122202216-71000e00-ceba-11eb-96d3-fd5e6d7cd525.png)
 
 
