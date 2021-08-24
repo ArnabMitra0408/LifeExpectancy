@@ -3,7 +3,8 @@
 * Dataset was taken from kaggle. 
 * Link for dataset: https://www.kaggle.com/mmattson/who-national-life-expectancy
 * Optimized Linear, Lasso, and Random Forest Regressors using GridsearchCV to reach the best model. 
-* Built an API on Flask and deployed it on a local server 
+* Built an API on Flask and deployed it on a Heroku:
+* Link: https://life-expectancy-predict.herokuapp.com/
 
 ## Code and Resources Used 
 **Python Version:** 3.7  
