@@ -97,7 +97,7 @@ The accuracy achieved by the three models are as follows:
 *	**Lasso Regression**: 83.3106%
 
 ## Productionization 
-In this step, I built a flask API  that was hosted on a local webserver. The API took all the variables as input and gave the life expectancy as output. Below are the screenshots for the same:
+In this step, I built a flask API  that was hosted on heroku. The API took all the variables as input and gave the life expectancy as output. Below are the screenshots for the same:
 ![image](https://user-images.githubusercontent.com/56645508/122203632-dbfe1480-cebb-11eb-8dba-3f18dbedf1ec.png)
 ![image](https://user-images.githubusercontent.com/56645508/122203693-ec15f400-cebb-11eb-9fe2-1b318fe8cd9e.png)
 ![image](https://user-images.githubusercontent.com/56645508/122203776-03ed7800-cebc-11eb-82ae-6bce43a5c36e.png)
