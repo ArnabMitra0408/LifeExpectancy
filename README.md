@@ -90,11 +90,11 @@ I fine tuned each model using GridSearchCV
 
 ## Model performance
 The Random Forest model outperformed the other models on the test set. 
-The accuracy achieved by the three models are as follows:
+The R-squared score achieved by the three models are as follows:
 
-*	**Random Forest** : 94.0281%
-*	**Linear Regression**: 83.3113%
-*	**Lasso Regression**: 83.3106%
+*	**Random Forest** : 0.940821
+*	**Linear Regression**: 0.833113
+*	**Lasso Regression**: 0.833106
 
 ## Productionization 
 In this step, I built a flask API  that was hosted on heroku. The API took all the variables as input and gave the life expectancy as output. Below are the screenshots for the same:
